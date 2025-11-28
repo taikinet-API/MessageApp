@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct LoginView: View {
-    @StateObject private var vm = AuthViewModel()
+    @StateObject private var vm = AuthViewModel()       // viewmodelの作成
 
     var body: some View {
         VStack(spacing: 20) {
             Text("ログイン")
                 .font(.largeTitle)
 
-            TextField("ユーザー名", text: $vm.username)
+            TextField("ユーザー名", text: $vm.username)      // viewmodelのユーザーフラグ
                 .textFieldStyle(.roundedBorder)
 
-            SecureField("パスワード", text: $vm.password)
+            SecureField("パスワード", text: $vm.password)    // viewmodelのパスワードフラグ
                 .textFieldStyle(.roundedBorder)
 
             if let err = vm.errorMessage {
                 Text(err).foregroundColor(.red)
             }
 
-            Button("ログイン") {
-                vm.login()
+            Button("ログイン") {                        // ログインが押されたら
+                vm.login()                            // viewmodel内でログイン処理
             }
             .buttonStyle(.borderedProminent)
         }

@@ -9,8 +9,8 @@ import Combine      // ObservableObject Protocol
 class ChatListViewModel: ObservableObject {
     @Published var rooms: [ChatRoom] = []
 
-    private let baseURL = URL(string: "http://localhost:3000")!
-
+    var baseURL: URL = APIconfig.baseURL
+    
     func loadRooms() {
         let url = baseURL.appendingPathComponent("rooms")
 

@@ -23,8 +23,9 @@ class AuthViewModel: ObservableObject {         // ObservableObject = Viewに通
     // APIのベースURL（Node.jsサーバー）
     // private にすることで View から触れなくしている（情報隠蔽）
     // ------------------------------------------------------
-    private let baseURL = URL(string: "http://localhost:3000")!
-
+    var baseURL = APIconfig.baseURL
+    
+    
     // ------------------------------------------------------
     // ログイン処理
     // ------------------------------------------------------
@@ -78,16 +79,6 @@ class AuthViewModel: ObservableObject {         // ObservableObject = Viewに通
                 // URLResponse は HTTPURLResponse 親クラスであるので、ダウンキャストするしかない
                 // ----------------------------------------
                 let http = response as! HTTPURLResponse // "!"はもし違えばエラーになる
-                
-                //
-                // debug用
-                //
-                
-                if let https = response as? HTTPURLResponse {
-                    print("成功している → \(http.statusCode)")
-                } else {
-                    print("失敗 → 中身は HTTP URL ではない")
-                }
 
                 // ----------------------------------------
                 // UI更新は必ずメインスレッド（MainActor）

@@ -11,8 +11,12 @@ import Combine
 class ChatRoomViewModel: ObservableObject {
     @Published var messages: [Message] = []
 
-    private let baseURL = URL(string: "http://localhost:3000")!
-
+    var baseURL = APIconfig.baseURL
+    
+    /*
+     Room ID
+     */
+    
     func loadMessages(roomId: Int) {
         let url = baseURL.appendingPathComponent("rooms/\(roomId)/messages")
 
